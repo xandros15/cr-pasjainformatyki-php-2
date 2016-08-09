@@ -35,7 +35,6 @@ class Session
 
     public function kill()
     {
-        unset($_SESSION);
-        return session_destroy();
+        session_unset();
     }
 }
