@@ -5,6 +5,11 @@
  * Date: 2016-08-09
  * Time: 19:21
  */
-use Slim\App;
+use Backend\Database;
+use Slim\Container;
 
-/** @var $app App */
+return [
+    'db' => function (Container $container) {
+        return Database::DBConnect(require __DIR__ . '/connect-dev.php');
+    }
+];
