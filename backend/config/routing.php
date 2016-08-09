@@ -10,10 +10,10 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 /** @var $app App */
-
 $app->get('[/]', function (Request $request, Response $response) {
-    $response->getBody()->write('hello world');
-    return $response;
+    $path = $this->session->get('zalogowany') ? $this->router->pathFor('gra') : $this->router->pathFor('login.panel');
+
+    return $response->withRedirect($path);
 })->setName('home');
 
 $app->get('/gra', function (Request $request, Response $response) {
