@@ -21,7 +21,7 @@ $app->get('/gra', function (Request $request, Response $response) {
 })->setName('gra');
 
 $app->get('/login', function (Request $request, Response $response) {
-
+    return $this->view->render($response, '/login-panel.php', ['loginPath' => $this->router->pathFor('login')]);
 })->setName('login.panel');
 
 $app->post('/login', function (Request $request, Response $response) {

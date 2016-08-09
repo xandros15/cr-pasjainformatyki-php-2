@@ -5,6 +5,7 @@
  * Date: 2016-08-09
  * Time: 18:24
  */
+/** @var $loginPath string */
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -18,7 +19,7 @@
 
 Tylko martwi ujrzeli koniec wojny - Platon<br/><br/>
 
-<form method="post">
+<form action="<?= $loginPath ?>" method="post">
 
     Login: <br/> <input type="text" name="login"/> <br/>
     Hasło: <br/> <input type="password" name="haslo"/> <br/><br/>
