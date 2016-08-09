@@ -17,7 +17,9 @@ $app->get('[/]', function (Request $request, Response $response) {
 })->setName('home');
 
 $app->get('/gra', function (Request $request, Response $response) {
-
+    return $this->view->render($response, '/gra.php', [
+        'user' => $this->user
+    ]);
 })->setName('gra')->add(function (Request $request, Response $response, $next) {
     if (!$this->session->get('zalogowany')) {
         return $response->withRedirect($this->router->pathFor('login.panel'));

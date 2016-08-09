@@ -5,6 +5,7 @@
  * Date: 2016-08-09
  * Time: 20:18
  */
+/** @var $user StdClass */
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -18,13 +19,13 @@
 
 <?php
 
-echo "<p>Witaj " . $_SESSION['user'] . '! [ <a href="logout.php">Wyloguj się!</a> ]</p>';
-echo "<p><b>Drewno</b>: " . $_SESSION['drewno'];
-echo " | <b>Kamień</b>: " . $_SESSION['kamien'];
-echo " | <b>Zboże</b>: " . $_SESSION['zboze'] . "</p>";
+echo "<p>Witaj " . $user->user . '! [ <a href="logout.php">Wyloguj się!</a> ]</p>';
+echo "<p><b>Drewno</b>: " . $user->drewno;
+echo " | <b>Kamień</b>: " . $user->kamien;
+echo " | <b>Zboże</b>: " . $user->zboze . "</p>";
 
-echo "<p><b>E-mail</b>: " . $_SESSION['email'];
-echo "<br /><b>Dni premium</b>: " . $_SESSION['dnipremium'] . "</p>";
+echo "<p><b>E-mail</b>: " . $user->email;
+echo "<br /><b>Dni premium</b>: " . $user->dnipremium . "</p>";
 
 ?>
 
