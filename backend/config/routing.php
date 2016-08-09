@@ -25,8 +25,28 @@ $app->get('/login', function (Request $request, Response $response) {
 })->setName('login.panel');
 
 $app->post('/login', function (Request $request, Response $response) {
+    /** @var $db PDO */
+    $db = $this->db;
+    $statement = $db->prepare('SELECT * FROM `uzytkownicy` WHERE `user` = ? limit 1');
 
+    $statement->execute(array($request->getParam('login')));
+
+    $user = $statement->fetch(PDO::FETCH_OBJ);
+
+    //TODO dodanie szyfrowania hasla
+    if ($user && $user->pass == $request->getParam('haslo')) {
+        $this->session->set('zalogowany', true);
+        $this->session->set('id', $user->id);
+        $path = $this->router->pathFor('gra');
+    } else {
+        $this->session->set('blad', 'Błędne dane logowania.');
+        $path = $this->router->pathFor('login.panel');
+    }
+
+    return $response->withRedirect($path);
 })->setName('login');
-$app->get('/logout', function (Request $request, Response $response) {
 
+$app->get('/logout', function (Request $request, Response $response) {
+    $this->session->kill();
+    return $response->withRedirect($this->router->pathFor('login.panel'));
 })->setName('logout');
