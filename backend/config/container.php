@@ -6,17 +6,16 @@
  * Time: 19:21
  */
 use Backend\Database;
-use Backend\Session;
 use Slim\Container;
 use Slim\Views\PhpRenderer;
+
+include_once __DIR__ . '/session-start.php';
 
 return [
     'db' => function (Container $container) {
         return Database::DBConnect(require __DIR__ . '/connect-dev.php');
     },
-    'session' => function (Container $container) {
-        $session = new Session();
-        $session->start();
+    'session' => function (Container $container) use ($session) {
         return $session;
     },
     'view' => function (Container $container) {
