@@ -7,6 +7,7 @@
  */
 use Backend\Database;
 use Slim\Container;
+use Slim\Flash\Messages;
 use Slim\Views\PhpRenderer;
 
 include_once __DIR__ . '/session-start.php';
@@ -20,5 +21,8 @@ return [
     },
     'view' => function (Container $container) {
         return new PhpRenderer(__DIR__ . '/../../view');
+    },
+    'alert' => function () {
+        return new Messages();
     }
 ];

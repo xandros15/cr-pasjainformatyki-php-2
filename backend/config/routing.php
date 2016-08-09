@@ -21,10 +21,13 @@ $app->get('/gra', function (Request $request, Response $response) {
 })->setName('gra');
 
 $app->get('/login', function (Request $request, Response $response) {
-    return $this->view->render($response, '/login-panel.php', ['loginPath' => $this->router->pathFor('login')]);
+    return $this->view->render($response, '/login-panel.php', [
+        'loginPath' => $this->router->pathFor('login'),
+        'errors' => $this->alert->getMessage('blad')
+    ]);
 })->setName('login.panel');
 
-$app->post('/login', function (Request $request, Response $response) {
+$app->post('/sign-in', function (Request $request, Response $response) {
     /** @var $db PDO */
     $db = $this->db;
     $statement = $db->prepare('SELECT * FROM `uzytkownicy` WHERE `user` = ? limit 1');
@@ -39,14 +42,14 @@ $app->post('/login', function (Request $request, Response $response) {
         $this->session->set('id', $user->id);
         $path = $this->router->pathFor('gra');
     } else {
-        $this->session->set('blad', 'Błędne dane logowania.');
+        $this->alert->addMessage('blad', 'Błędne dane logowania.');
         $path = $this->router->pathFor('login.panel');
     }
 
     return $response->withRedirect($path);
 })->setName('login');
 
-$app->get('/logout', function (Request $request, Response $response) {
+$app->get('/sign-out', function (Request $request, Response $response) {
     $this->session->kill();
     return $response->withRedirect($this->router->pathFor('login.panel'));
 })->setName('logout');

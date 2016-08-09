@@ -6,6 +6,7 @@
  * Time: 18:24
  */
 /** @var $loginPath string */
+/** @var $errors array */
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -27,7 +28,9 @@ Tylko martwi ujrzeli koniec wojny - Platon<br/><br/>
 
 </form>
 
-<?= isset($_SESSION['blad']) ? $_SESSION['blad'] : ''; ?>
+<?php foreach ($errors as $error): ?>
+    <p><?= (string)$error ?></p>
+<?php endforeach; ?>
 
 </body>
 </html>
