@@ -18,7 +18,13 @@ $app->get('[/]', function (Request $request, Response $response) {
 
 $app->get('/gra', function (Request $request, Response $response) {
 
-})->setName('gra');
+})->setName('gra')->add(function (Request $request, Response $response, $next) {
+    if (!$this->session->get('zalogowany')) {
+        return $response->withRedirect($this->router->pathFor('login.panel'));
+    }
+
+    return $next($request, $response);
+});
 
 $app->get('/login', function (Request $request, Response $response) {
     return $this->view->render($response, '/login-panel.php', [
