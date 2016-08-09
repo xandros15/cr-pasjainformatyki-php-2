@@ -6,6 +6,7 @@
  * Time: 20:18
  */
 /** @var $user StdClass */
+/** @var $logoutPath string */
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -19,7 +20,7 @@
 
 <?php
 
-echo "<p>Witaj " . $user->user . '! [ <a href="logout.php">Wyloguj się!</a> ]</p>';
+echo "<p>Witaj " . $user->user . '! [ <a href="' . $logoutPath . '">Wyloguj się!</a> ]</p>';
 echo "<p><b>Drewno</b>: " . $user->drewno;
 echo " | <b>Kamień</b>: " . $user->kamien;
 echo " | <b>Zboże</b>: " . $user->zboze . "</p>";

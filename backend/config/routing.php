@@ -18,7 +18,8 @@ $app->get('[/]', function (Request $request, Response $response) {
 
 $app->get('/gra', function (Request $request, Response $response) {
     return $this->view->render($response, '/gra.php', [
-        'user' => $this->user
+        'user' => $this->user,
+        'logoutPath' => $this->router->pathFor('logout')
     ]);
 })->setName('gra')->add(function (Request $request, Response $response, $next) {
     if (!$this->session->get('zalogowany')) {
