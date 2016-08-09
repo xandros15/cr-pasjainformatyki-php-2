@@ -14,4 +14,19 @@ use Slim\Http\Response;
 $app->get('[/]', function (Request $request, Response $response) {
     $response->getBody()->write('hello world');
     return $response;
-});
+})->setName('home');
+
+$app->get('/gra', function (Request $request, Response $response) {
+
+})->setName('gra');
+
+$app->get('/login', function (Request $request, Response $response) {
+
+})->setName('login.panel');
+
+$app->post('/login', function (Request $request, Response $response) {
+
+})->setName('login');
+$app->get('/logout', function (Request $request, Response $response) {
+
+})->setName('logout');
