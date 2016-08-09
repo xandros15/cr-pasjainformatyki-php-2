@@ -1,11 +1,14 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: xandros15
  * Date: 2016-04-25
  * Time: 20:21
  */
+namespace Backend;
+
+use PDO;
+
 abstract class Database
 {
     /**
