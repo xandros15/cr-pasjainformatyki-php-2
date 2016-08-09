@@ -6,10 +6,14 @@
  * Time: 19:21
  */
 use Backend\Database;
+use Backend\Session;
 use Slim\Container;
 
 return [
     'db' => function (Container $container) {
         return Database::DBConnect(require __DIR__ . '/connect-dev.php');
-    }
+    },
+    'session' => function (Container $container) {
+        return new Session();
+    },
 ];
