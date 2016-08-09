@@ -8,6 +8,7 @@
 use Backend\Database;
 use Backend\Session;
 use Slim\Container;
+use Slim\Views\PhpRenderer;
 
 return [
     'db' => function (Container $container) {
@@ -18,4 +19,7 @@ return [
         $session->start();
         return $session;
     },
+    'view' => function (Container $container) {
+        return new PhpRenderer(__DIR__ . '/../../view');
+    }
 ];
