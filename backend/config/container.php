@@ -24,5 +24,14 @@ return [
     },
     'alert' => function () {
         return new Messages();
+    },
+    'user' => function (Container $container) {
+        $user = null;
+        if ($container->session->has('id')) {
+            $statement = $container->db->prepare('SELECT * FROM `uzytkownicy` WHERE `id` = ? limit 1');
+            $statement->execute([(int) $container->session->get('id')]);
+            $user = $statement->fetch(PDO::FETCH_OBJ);
+        }
+        return $user;
     }
 ];
