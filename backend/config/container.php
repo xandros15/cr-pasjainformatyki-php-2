@@ -14,6 +14,8 @@ return [
         return Database::DBConnect(require __DIR__ . '/connect-dev.php');
     },
     'session' => function (Container $container) {
-        return new Session();
+        $session = new Session();
+        $session->start();
+        return $session;
     },
 ];
